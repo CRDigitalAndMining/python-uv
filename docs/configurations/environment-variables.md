@@ -35,6 +35,8 @@ DEBUG=true
 
 ### FastAPI Application
 
+**Note**: FastAPI is an optional dependency. Install with `uv sync --extra fastapi`.
+
 | Variable         | Type          | Default           | Description                                                                                                                                     |
 | ---------------- | ------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `TITLE`          | `str`         | `"FastAPI"`       | Application title displayed in OpenAPI documentation and API responses.                                                                         |
