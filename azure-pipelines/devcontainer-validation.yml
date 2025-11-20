@@ -1,0 +1,65 @@
+# DevContainer Validation Pipeline
+# Equivalent to .github/workflows/devcontainer.yml
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - ".devcontainer/**"
+      - ".python-version"
+      - "azure-pipelines/devcontainer-validation.yml"
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - ".devcontainer/**"
+      - ".python-version"
+      - "azure-pipelines/devcontainer-validation.yml"
+
+pool:
+  vmImage: "ubuntu-latest"
+
+stages:
+  - stage: Lint
+    displayName: "Lint DevContainer Dockerfile"
+    jobs:
+      - job: HadolintCheck
+        displayName: "Hadolint Dockerfile Linting"
+        steps:
+          - checkout: self
+
+          - script: |
+              docker run --rm -i hadolint/hadolint < .devcontainer/Dockerfile
+            displayName: "Run Hadolint on DevContainer Dockerfile"
+
+  - stage: Build
+    displayName: "Build and Test DevContainer"
+    dependsOn: Lint
+    condition: succeeded()
+    jobs:
+      - job: DevContainerBuild
+        displayName: "Build DevContainer Image"
+        steps:
+          - checkout: self
+
+          - task: Docker@2
+            displayName: "Build DevContainer Image"
+            inputs:
+              command: "build"
+              Dockerfile: ".devcontainer/Dockerfile"
+              tags: "vscode:latest"
+              arguments: "--cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new,mode=max"
+
+          - script: |
+              docker compose -f .devcontainer/docker-compose.yml up -d --build vscode
+            displayName: "Start DevContainer with Docker Compose"
+
+          - script: |
+              docker compose -f .devcontainer/docker-compose.yml down
+            displayName: "Stop DevContainer"
+            condition: always()

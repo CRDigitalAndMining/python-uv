@@ -229,18 +229,17 @@ The `docs/` directory is organized for MkDocs:
 
 When adding new utilities to `tools/`, add corresponding documentation to `docs/guides/tools/`.
 
-## CI/CD Workflows
+## CI/CD Pipelines
 
-GitHub Actions workflows in `.github/workflows/`:
-- **docker.yml**: Validate Docker build
-- **devcontainer.yml**: Validate Dev Container configuration
-- **format.yml**: Check Ruff formatting
-- **labeler.yml**: Add label in GitHub
+Azure DevOps Pipeline configurations in `azure-pipelines/`:
+- **docker-validation.yml**: Validate Docker build with hadolint
+- **devcontainer-validation.yml**: Validate Dev Container configuration
+- **format-check.yml**: Check Ruff formatting
 - **lint.yml**: Run Pyright + Ruff linting
 - **test.yml**: Run pytest with coverage
-- **gh-deploy.yml**: Deploy documentation to GitHub Pages
+- **docs-deploy.yml**: Build and deploy documentation
 
-All workflows use the same nox commands as local development.
+All pipelines use the same nox commands as local development.
 
 ## Environment Variables
 

@@ -7,11 +7,6 @@
 
 [![Versions](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12%20|%203.13%20|%203.14%20-green.svg)](https://github.com/a5chin/python-uv)
 
-[![Docker](https://github.com/a5chin/python-uv/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/docker.yml)
-[![Format](https://github.com/a5chin/python-uv/actions/workflows/format.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/format.yml)
-[![Lint](https://github.com/a5chin/python-uv/actions/workflows/lint.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/lint.yml)
-[![Test](https://github.com/a5chin/python-uv/actions/workflows/test.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/test.yml)
-
 </div>
 
 A production-ready Python development environment template using modern tools: **uv** for blazing-fast package management, **Ruff** for lightning-fast linting and formatting, and **VSCode Dev Containers** for reproducible development environments.
@@ -61,7 +56,7 @@ A production-ready Python development environment template using modern tools: *
 - 🐳 **Dev Container ready** - Consistent development environment across all machines
 - 🔍 **Type checking** with Pyright
 - ✅ **Pre-configured testing** with pytest (75% coverage requirement)
-- 🔄 **Automated CI/CD** with GitHub Actions
+- 🔄 **Automated CI/CD** with Azure DevOps Pipelines
 - 📦 **Reusable utilities** - Logger, configuration management, and performance tracing tools
 - 🎯 **Task automation** with nox
 - 🪝 **Pre-commit hooks** for automatic code quality checks
@@ -234,7 +229,7 @@ uv run mkdocs gh-deploy
 │   ├── configurations/     # Configuration references
 │   └── usecases/           # Real-world examples
 ├── .devcontainer/           # Dev Container configuration
-├── .github/                 # GitHub Actions workflows and reusable actions
+├── .github/                 # GitHub configuration (Copilot, actions, etc.)
 ├── noxfile.py              # Task automation configuration (test, lint, fmt)
 ├── pyproject.toml          # Project metadata and dependencies (uv)
 ├── ruff.toml               # Ruff linter/formatter configuration
@@ -331,20 +326,20 @@ Testing framework with coverage enforcement.
 
 ## 🔄 CI/CD
 
-Automated workflows ensure code quality and consistency. All workflows run on push and pull requests.
+Automated pipelines ensure code quality and consistency. Azure DevOps Pipeline configurations are provided in `azure-pipelines/`.
 
-**Available workflows in `.github/workflows/`:**
+**Available pipelines:**
 
-| Workflow | Purpose | Tools Used |
-|----------|---------|-----------|
-| `docker.yml` | Validate Docker build | Docker |
-| `devcontainer.yml` | Validate Dev Container configuration | devcontainer CLI |
-| `format.yml` | Check code formatting | Ruff |
-| `labeler.yml` | Add label in GitHub | GitHub |
+| Pipeline | Purpose | Tools Used |
+|----------|---------|------------|
+| `docker-validation.yml` | Validate Docker build | Docker, hadolint |
+| `devcontainer-validation.yml` | Validate Dev Container | Docker Compose |
+| `format-check.yml` | Check code formatting | Ruff |
 | `lint.yml` | Run static analysis | Pyright, Ruff |
 | `test.yml` | Run test suite with coverage | pytest, coverage |
-| `gh-deploy.yml` | Deploy documentation to GitHub Pages | MkDocs |
-| `pr-agent.yml` | Automated PR reviews | Qodo AI PR Agent |
+| `docs-deploy.yml` | Build and deploy documentation | MkDocs |
+
+**Setup:** See `azure-pipelines/README.md` for detailed setup instructions and migration guide.
 
 ## 🎨 VSCode Configuration
 
