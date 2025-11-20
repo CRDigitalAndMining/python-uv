@@ -1,4 +1,19 @@
 {
+    "cSpell.words": [
+        "autodocstring",
+        "azuremonitor",
+        "devcontainer",
+        "dockercompose",
+        "fastapi",
+        "gitignore",
+        "gitlens",
+        "pyright",
+        "pylance",
+        "pytest",
+        "Pydantic",
+        "toml",
+        "uvicorn"
+    ],
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "gitlens.codeLens.enabled": false,
@@ -21,16 +36,8 @@
             "path": "/bin/zsh"
         }
     },
-    "[azure-pipelines]": {
-        "editor.autoIndent": "advanced",
-        "editor.defaultFormatter": "redhat.vscode-yaml",
-        "editor.formatOnSave": true,
-        "editor.insertSpaces": true,
-        "editor.tabSize": 2
-    },
     "[dockercompose]": {
         "editor.autoIndent": "advanced",
-        "editor.defaultFormatter": "redhat.vscode-yaml",
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
         "editor.quickSuggestions": {
@@ -50,7 +57,6 @@
         "editor.tabSize": 4
     },
     "[markdown]": {
-        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
         "editor.formatOnSave": true,
         "editor.wordWrap": "on"
     },
@@ -71,7 +77,6 @@
     },
     "[yaml]": {
         "editor.autoIndent": "advanced",
-        "editor.defaultFormatter": "redhat.vscode-yaml",
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
         "editor.tabSize": 2

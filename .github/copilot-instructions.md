@@ -1,12 +1,15 @@
-# GitHub Copilot Instructions
+# GitHub Copilot Instructions - Minimal POC Branch
 
-This file provides guidance to GitHub Copilot when working with code in this repository.
+This is a **minimal branch** for quick POCs and prototypes. Keep it simple!
 
 ## Project Overview
 
-This is a Python development environment template using **uv** (fast Python package manager) and **Ruff** (linter/formatter). The repository serves dual purposes:
-1. A template for starting new Python projects
-2. A reusable `tools/` package with production-ready utilities (Logger, Config, Timer)
+Lightweight Python template using **uv** (package manager) and **Ruff** (linter/formatter).
+
+Core utilities in `tools/`:
+- **Logger**: Dual-mode logging (local/Azure Monitor)
+- **Config**: Environment-based settings (Pydantic)
+- **Timer**: Performance monitoring decorator/context manager
 
 ## Development Commands
 
@@ -27,63 +30,26 @@ uv remove <package>
 
 ### Testing
 ```bash
-# Run all tests with coverage (75% minimum required)
-uv run nox -s test
+# Run all tests
+uv run pytest
 
 # Run specific test file
-uv run pytest tests/tools/test__logger.py
+uv run pytest tests/test__minimal.py
 
-# Run with JUnit XML output for CI
-uv run nox -s test -- --junitxml=results.xml
-
-# Run pytest directly (bypasses nox)
-uv run pytest
+# Run with verbose output
+uv run pytest -v
 ```
 
 ### Linting & Formatting
 ```bash
 # Format code
-uv run nox -s fmt
-
-# Lint with both Pyright and Ruff
-uv run nox -s lint -- --pyright --ruff
-
-# Lint with Pyright only
-uv run nox -s lint -- --pyright
-
-# Lint with Ruff only
-uv run nox -s lint -- --ruff
-
-# Run Ruff directly
-uv run ruff check . --fix
 uv run ruff format .
 
-# Run Pyright directly
+# Lint code
+uv run ruff check . --fix
+
+# Type check
 uv run pyright
-```
-
-### Pre-commit Hooks
-```bash
-# Install hooks
-uv run pre-commit install
-
-# Run all hooks manually
-uv run pre-commit run --all-files
-
-# Run specific hook
-uv run pre-commit run ruff-format
-```
-
-### Documentation
-```bash
-# Serve docs locally at http://127.0.0.1:8000
-uv run mkdocs serve
-
-# Build documentation
-uv run mkdocs build
-
-# Deploy to GitHub Pages
-uv run mkdocs gh-deploy
 ```
 
 ## Architecture
@@ -141,15 +107,15 @@ def process():
 
 ### Test Structure
 
-Tests in `tests/tools/` mirror the package structure:
+Tests in `tests/`:
 - **Naming convention**: `test__*.py` (double underscore)
-- **Coverage requirement**: 75% minimum (including branch coverage)
-- **Test files exempt from**: `INP001` (namespace packages), `S101` (assert usage)
+- **Coverage**: Not enforced in minimal branch (for speed)
+- **Minimal smoke tests**: Only essential functionality tests
 
 ### Configuration Philosophy
 
 **Ruff (ruff.toml)**:
-- ALL rules enabled by default with specific exclusions
+- Essential rules only: E (errors), F (pyflakes), I (isort), UP (pyupgrade)
 - Line length: 88 (Black-compatible)
 - Target Python: 3.14
 - Per-file ignores for test files
@@ -157,31 +123,12 @@ Tests in `tests/tools/` mirror the package structure:
 **Pyright (pyrightconfig.json)**:
 - Type checking mode: standard
 - Only includes `tools/` package (not tests)
-- venv: `.venv`
+- venv: `/home/vscode/.venv`
 
 **pytest (pytest.ini)**:
-- Coverage: 75% minimum with branch coverage
-- Reports: HTML + terminal
-- Import mode: importlib
-
-### Nox Task Automation
-
-The `noxfile.py` uses a custom `CLIArgs` parser (Pydantic-based):
-- All sessions use `python=False` (rely on `uv run`)
-- Arguments passed via `-- --flag value` syntax
-- Sessions: `fmt`, `lint`, `test`
-
-Example of the argument parsing pattern:
-```python
-# noxfile.py
-@nox.session(python=False)
-def lint(session: nox.Session) -> None:
-    args = CLIArgs.parse(session.posargs)
-    if args.pyright:
-        session.run("uv", "run", "pyright")
-    if args.ruff:
-        session.run("uv", "run", "ruff", "check", ".", "--fix")
-```
+- Basic test discovery
+- Simple output format
+- No coverage requirements
 
 ## Key Patterns for Development
 
@@ -218,50 +165,55 @@ When testing the utilities themselves:
 - Config: Use Pydantic's model instantiation with kwargs to override values
 - Timer: Check debug logs for execution time messages
 
-## Documentation Structure
-
-The `docs/` directory is organized for MkDocs:
-- **docs/index.md**: Main landing page
-- **docs/getting-started/**: Setup guides (Docker, VSCode, Dev Container)
-- **docs/guides/**: Tool usage guides (uv, Ruff, Pyright, pre-commit, tools package)
-- **docs/configurations/**: Detailed configuration references
-- **docs/usecases/**: Real-world examples (Jupyter, FastAPI, OpenCV)
-
-When adding new utilities to `tools/`, add corresponding documentation to `docs/guides/tools/`.
-
-## CI/CD Pipelines
-
-Azure DevOps Pipeline configurations in `azure-pipelines/`:
-- **docker-validation.yml**: Validate Docker build with hadolint
-- **devcontainer-validation.yml**: Validate Dev Container configuration
-- **format-check.yml**: Check Ruff formatting
-- **lint.yml**: Run Pyright + Ruff linting
-- **test.yml**: Run pytest with coverage
-- **docs-deploy.yml**: Build and deploy documentation
-
-All pipelines use the same nox commands as local development.
-
 ## Environment Variables
 
 Critical environment variables (set in `.env.local`):
 - `IS_LOCAL`: Boolean flag for local vs production (affects logging, configuration)
-- `DEBUG`: Boolean for debug mode
-- FastAPI settings: `TITLE`, `VERSION`, `API_PREFIX_V1`, etc.
+- `debug`: Boolean for debug mode
+- FastAPI settings: `title`, `version`, `api_prefix_v1`, etc.
 
 ## Important Notes
 
-- **Coverage is enforced**: Tests must maintain 75% coverage (configured in pytest.ini)
+- **Minimal configuration**: Only essential rules and tools
 - **uv replaces pip/poetry**: Use `uv add` not `pip install`, use `uv.lock` not `requirements.txt`
 - **Ruff replaces multiple tools**: No need for Black, isort, Flake8, etc.
-- **nox is the task runner**: Prefer `uv run nox -s <session>` over direct tool calls
+- **No task runner**: Run commands directly with `uv run`
 - **Test naming**: Use `test__*.py` pattern (double underscore)
 - **Type checking targets tools/ only**: Pyright only checks the `tools/` package, not tests
 
 ## Template Usage Pattern
 
-When using this as a template for a new project:
-1. Update `pyproject.toml` with new project name/description
-2. Modify or extend `tools/config/settings.py` for project-specific configuration
-3. Use the utilities from `tools/` or remove if not needed
-4. Update `.env` with base configuration, `.env.local` with local overrides
-5. Customize Ruff rules in `ruff.toml` if needed (but start with defaults)
+When using this as a template for a new POC:
+1. Clone the minimal branch
+2. Update `pyproject.toml` with new project name/description
+3. Modify or extend `tools/config/settings.py` for project-specific configuration
+4. Use the utilities from `tools/` or remove if not needed
+5. Update `.env` with base configuration, `.env.local` with local overrides
+
+## Optional Dependencies
+
+```bash
+# FastAPI support
+uv sync --extra fastapi
+
+# Database support (SQLAlchemy + Alembic)
+uv sync --extra database
+
+# Everything
+uv sync --extra all
+```
+
+## Development Philosophy
+
+This minimal branch is optimized for:
+- ✅ Fast iteration
+- ✅ Quick prototyping  
+- ✅ Minimal overhead
+- ✅ Essential tooling only
+
+**Not included** (use main branch for production):
+- ❌ Extensive documentation
+- ❌ CI/CD pipelines
+- ❌ Pre-commit hooks
+- ❌ Coverage requirements
+- ❌ Task automation (nox)
