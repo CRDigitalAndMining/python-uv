@@ -40,6 +40,19 @@ dependencies = [
     "pydantic-settings>=2.11.0",
 ]
 
+[project.optional-dependencies]
+# Web framework with production server
+fastapi = ["fastapi>=0.115.0", "uvicorn[standard]>=0.32.0"]
+# Database with ORM and migrations
+database = ["sqlalchemy>=2.0.0", "alembic>=1.13.0"]
+# All optional dependencies
+all = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "sqlalchemy>=2.0.0",
+    "alembic>=1.13.0",
+]
+
 [dependency-groups]
 dev = [
     "ipykernel>=7.1.0",

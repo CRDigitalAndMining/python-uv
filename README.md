@@ -128,11 +128,19 @@ uv sync
 # Install without dev dependencies
 uv sync --no-dev
 
+# Install with optional dependencies (FastAPI, database, etc.)
+uv sync --extra fastapi          # Add FastAPI and uvicorn
+uv sync --extra database         # Add SQLAlchemy and Alembic
+uv sync --extra all              # Add all optional dependencies
+
 # Add new dependencies
 uv add requests pandas
 
 # Add dev dependencies
 uv add --dev pytest-mock
+
+# Add optional dependencies
+uv add --optional fastapi fastapi uvicorn[standard]
 ```
 
 ### Running Tasks
@@ -330,14 +338,14 @@ Automated pipelines ensure code quality and consistency. Azure DevOps Pipeline c
 
 **Available pipelines:**
 
-| Pipeline | Purpose | Tools Used |
-|----------|---------|------------|
-| `docker-validation.yml` | Validate Docker build | Docker, hadolint |
-| `devcontainer-validation.yml` | Validate Dev Container | Docker Compose |
-| `format-check.yml` | Check code formatting | Ruff |
-| `lint.yml` | Run static analysis | Pyright, Ruff |
-| `test.yml` | Run test suite with coverage | pytest, coverage |
-| `docs-deploy.yml` | Build and deploy documentation | MkDocs |
+| Pipeline                      | Purpose                        | Tools Used       |
+| ----------------------------- | ------------------------------ | ---------------- |
+| `docker-validation.yml`       | Validate Docker build          | Docker, hadolint |
+| `devcontainer-validation.yml` | Validate Dev Container         | Docker Compose   |
+| `format-check.yml`            | Check code formatting          | Ruff             |
+| `lint.yml`                    | Run static analysis            | Pyright, Ruff    |
+| `test.yml`                    | Run test suite with coverage   | pytest, coverage |
+| `docs-deploy.yml`             | Build and deploy documentation | MkDocs           |
 
 **Setup:** See `azure-pipelines/README.md` for detailed setup instructions and migration guide.
 
