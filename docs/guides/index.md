@@ -209,26 +209,6 @@ with Timer("database_query"):
 
 [→ Explore all built-in utilities](tools/index.md)
 
-## Project Templates
-
-### [Cookiecutter Guide](cookiecutter.md)
-
-Learn how to use cookiecutter templates to bootstrap new projects:
-
-- Data Science projects
-- FastAPI applications
-- Django web apps
-- Flask microservices
-
-**Quick reference:**
-
-```bash
-# Use a template
-uv run cookiecutter https://github.com/fastapi/full-stack-fastapi-template
-```
-
-[→ Read the full cookiecutter guide](cookiecutter.md)
-
 ## Next Steps
 
 1. **Start with basics**: Read the [uv guide](uv.md) to understand package management
