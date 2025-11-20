@@ -6,7 +6,6 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 [![Versions](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12%20|%203.13%20|%203.14%20-green.svg)](https://github.com/a5chin/python-uv)
-![code coverage](https://raw.githubusercontent.com/a5chin/python-uv/coverage-badge/coverage.svg?raw=true)
 
 [![Docker](https://github.com/a5chin/python-uv/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/docker.yml)
 [![Format](https://github.com/a5chin/python-uv/actions/workflows/format.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/format.yml)
@@ -48,7 +47,6 @@ A production-ready Python development environment template using modern tools: *
     - [Pytest Configuration](#pytest-configuration)
   - [🔄 CI/CD](#-cicd)
   - [🎨 VSCode Configuration](#-vscode-configuration)
-  - [🍪 Cookiecutter Templates](#-cookiecutter-templates)
   - [📖 Documentation](#-documentation)
   - [🌿 Branches](#-branches)
   - [📄 License](#-license)
@@ -347,7 +345,6 @@ Automated workflows ensure code quality and consistency. All workflows run on pu
 | `test.yml` | Run test suite with coverage | pytest, coverage |
 | `gh-deploy.yml` | Deploy documentation to GitHub Pages | MkDocs |
 | `pr-agent.yml` | Automated PR reviews | Qodo AI PR Agent |
-| `publish-devcontainer.yml` | Publish Dev Container image | Docker, GHCR |
 
 ## 🎨 VSCode Configuration
 
