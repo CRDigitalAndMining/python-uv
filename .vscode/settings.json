@@ -1,6 +1,8 @@
 {
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.currentLine.enabled": true,
     "notebook.codeActionsOnSave": {
         "notebook.source.fixAll": "explicit",
         "notebook.source.organizeImports": "explicit"
@@ -19,6 +21,13 @@
             "path": "/bin/zsh"
         }
     },
+    "[azure-pipelines]": {
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
     "[dockercompose]": {
         "editor.autoIndent": "advanced",
         "editor.defaultFormatter": "redhat.vscode-yaml",
@@ -32,7 +41,6 @@
         "editor.tabSize": 4
     },
     "[dockerfile]": {
-        "editor.defaultFormatter": "ms-azuretools.vscode-docker",
         "editor.formatOnSave": true
     },
     "[json][jsonc]": {
@@ -40,6 +48,11 @@
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
         "editor.tabSize": 4
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+        "editor.formatOnSave": true,
+        "editor.wordWrap": "on"
     },
     "[python]": {
         "editor.codeActionsOnSave": {

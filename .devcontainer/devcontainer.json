@@ -12,25 +12,38 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "bierner.markdown-mermaid",
                 "charliermarsh.ruff",
+                "codezombiech.gitignore",
+                "eamodio.gitlens",
                 "exiasr.hadolint",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
                 "kevinrose.vsc-python-indent",
                 "mosapride.zenkaku",
+                "ms-azure-devops.azure-pipelines",
                 "ms-azuretools.vscode-docker",
                 "ms-python.python",
                 "ms-python.vscode-pylance",
                 "ms-toolsai.jupyter",
+                "ms-vscode.azurecli",
                 "njpwerner.autodocstring",
+                "oderwat.indent-rainbow",
+                "pkief.material-icon-theme",
                 "redhat.vscode-yaml",
                 "shardulm94.trailing-spaces",
+                "streetsidesoftware.code-spell-checker",
                 "tamasfe.even-better-toml",
+                "usernamehw.errorlens",
                 "yzhang.markdown-all-in-one"
             ]
         }
     },
     "containerEnv": {
         "DISPLAY": "dummy",
-        "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
+        "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv",
+        "PYTHONPATH": "/workspace",
+        "IS_LOCAL": "true"
     },
     "postCreateCommand": "uv sync --frozen",
     "postStartCommand": "uv run pre-commit install",
