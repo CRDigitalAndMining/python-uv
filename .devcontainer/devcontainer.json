@@ -34,5 +34,6 @@
     },
     "postCreateCommand": "uv sync --frozen",
     "postStartCommand": "uv run pre-commit install",
+    "postAttachCommand": "git config core.fileMode false",
     "remoteUser": "vscode"
 }
