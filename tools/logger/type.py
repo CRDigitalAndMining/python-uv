@@ -5,5 +5,5 @@ class LogType(StrEnum):
     """Logger type."""
 
     LOCAL = auto()
-    GOOGLE_CLOUD = auto()
+    AZURE_MONITOR = auto()
     AWS = auto()

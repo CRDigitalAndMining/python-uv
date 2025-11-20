@@ -15,7 +15,7 @@ class Settings(BaseSettings):
         >>> settings = Settings()
         >>> logger = Logger(
         >>>     name=__name__,
-        >>>     log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+        >>>     log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR
         >>> )
 
     """

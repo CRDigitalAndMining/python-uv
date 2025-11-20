@@ -26,7 +26,7 @@ tests/tools/test__logger.py      24      0      0      0   100%
 tools/__init__.py                 2      0      0      0   100%
 tools/logger/__init__.py          5      0      0      0   100%
 tools/logger/color.py            12      0      0      0   100%
-tools/logger/googlecloud.py      10      0      0      0   100%
+tools/logger/azuremonitor.py      10      0      0      0   100%
 tools/logger/local.py            12      0      0      0   100%
 tools/logger/logger.py           23      0      2      0   100%
 tools/logger/style.py             7      0      0      0   100%

@@ -21,18 +21,18 @@ class TestLocalLogger:
         assert self.logger.name == __name__
 
 
-class TestGoogleCloudLogger:
-    """Test class for Google Cloud logger."""
+class TestAzureMonitorLogger:
+    """Test class for Azure Monitor logger."""
 
     def setup_method(self) -> None:
         """Set up logger."""
-        from google.auth.credentials import AnonymousCredentials
+        # Use a mock connection string for testing
+        mock_connection_string = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://test.in.applicationinsights.azure.com/"
 
         self.logger = Logger(
             name=__name__,
-            project=__name__,
-            credentials=AnonymousCredentials(),
-            log_type=LogType.GOOGLE_CLOUD,
+            connection_string=mock_connection_string,
+            log_type=LogType.AZURE_MONITOR,
         )
 
     def test_log(self) -> None:

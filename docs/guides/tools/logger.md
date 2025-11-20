@@ -7,7 +7,7 @@ The Logger module provides a flexible logging system that works seamlessly in bo
 The Logger extends Python's standard `logging.Logger` with support for:
 
 - **Local development** - Colored, formatted console output
-- **Google Cloud** - Structured JSON logging compatible with Google Cloud Logging
+- **Azure Monitor** - Structured JSON logging compatible with Azure Monitor and Application Insights
 - **Easy switching** - Change modes with a single parameter
 - **Standard interface** - Uses familiar logging methods (`.info()`, `.error()`, etc.)
 
@@ -36,24 +36,23 @@ logger.error("An error occurred")
 2038-01-19 03:14:07,000 | ERROR    | __main__:main:10 - An error occurred
 ```
 
-### Google Cloud Logging
+### Azure Monitor Logging
 
-For production deployment on Google Cloud, use `LogType.GOOGLE_CLOUD`:
+For production deployment on Azure, use `LogType.AZURE_MONITOR`:
 
 ```python
 from tools.logger import Logger, LogType
 
 logger = Logger(
     __name__,
-    log_type=LogType.GOOGLE_CLOUD,
-    project="my-gcp-project",
-    credentials=credentials  # Optional: pass credentials object
+    log_type=LogType.AZURE_MONITOR,
+    connection_string="InstrumentationKey=your-key;IngestionEndpoint=https://..."
 )
 
 logger.info("Application started in production")
 ```
 
-This outputs structured JSON logs that integrate with Google Cloud Logging.
+This outputs structured JSON logs that integrate with Azure Monitor and Application Insights.
 
 ## Environment-Based Configuration
 
@@ -66,7 +65,7 @@ from tools.logger import Logger, LogType
 settings = Settings()
 logger = Logger(
     __name__,
-    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR
 )
 
 logger.info("Logger configured based on environment")
@@ -141,8 +140,8 @@ from tools.logger import Logger, LogType
 settings = Settings()
 logger = Logger(
     __name__,
-    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD,
-    project=settings.gcp_project if not settings.IS_LOCAL else None
+    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR,
+    connection_string=settings.azure_monitor_connection_string if not settings.IS_LOCAL else None
 )
 
 app = FastAPI()

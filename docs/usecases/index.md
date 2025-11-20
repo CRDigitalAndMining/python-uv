@@ -77,7 +77,7 @@ from tools.logger import Logger, LogType
 
 settings = Settings()
 logger = Logger(__name__,
-    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR
 )
 
 app = FastAPI(**settings.fastapi_kwargs)
@@ -240,7 +240,7 @@ from tools.tracer import Timer
 
 settings = Settings()
 logger = Logger(__name__,
-    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR
 )
 
 app = FastAPI(**settings.fastapi_kwargs)
@@ -279,7 +279,7 @@ from tools.logger import Logger, LogType
 settings = Settings()
 logger = Logger(
     __name__,
-    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR
 )
 ```
 

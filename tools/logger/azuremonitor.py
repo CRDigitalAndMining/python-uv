@@ -1,32 +1,40 @@
 import logging
 
 
-class GoogleCloudFormatter(logging.Formatter):
-    """Formatter for Google Cloud logger."""
+class AzureMonitorFormatter(logging.Formatter):
+    """Formatter for Azure Monitor logger."""
 
     def format(self, record: logging.LogRecord) -> str:
-        """Style for Google Cloud logger.
+        """Style for Azure Monitor logger.
 
         Args:
             record (logging.LogRecord): Raw log
 
         Returns:
-            str: Log format for Google Cloud
+            str: Log format for Azure Monitor
 
         """
         from pydantic import BaseModel, PositiveInt
 
         class Record(BaseModel):
-            """Record for Google Cloud."""
+            """Record for Azure Monitor."""
 
             name: str
             line: PositiveInt
             func: str
             message: str
+            level: str
+            timestamp: str
+
+        import datetime
 
         return Record(
             name=record.name,
             line=record.lineno,
             func=record.funcName,
             message=record.getMessage(),
+            level=record.levelname,
+            timestamp=datetime.datetime.fromtimestamp(
+                record.created, tz=datetime.UTC
+            ).isoformat(),
         ).model_dump_json()

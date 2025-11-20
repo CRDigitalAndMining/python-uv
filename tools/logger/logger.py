@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from tools.logger.type import LogType
 
 if TYPE_CHECKING:
-    from google.auth.credentials import Credentials
+    from azure.identity import DefaultAzureCredential
 
 
 class Logger(logging.Logger):
@@ -23,36 +23,37 @@ class Logger(logging.Logger):
     def __init__(
         self,
         name: str,
-        project: str | None = None,
-        credentials: Credentials | None = None,
+        connection_string: str | None = None,
+        credential: DefaultAzureCredential | None = None,
         log_type: LogType = LogType.LOCAL,
     ) -> None:
         """Initialize local logger formatter.
 
         Args:
             name (str): Logger name
-            project (str | None, optional): Google Cloud Project ID. Defaults to None.
-            credentials (Credentials | None, optional): Credentials for Google Cloud.
-                                                        Defaults to None.
-            log_type (LogType, optional): Local or something.
+            connection_string (str | None, optional): Azure Monitor connection string.
+                                                      Defaults to None.
+            credential (DefaultAzureCredential | None, optional): Credentials for Azure.
+                                                                  Defaults to None.
+            log_type (LogType, optional): Local or Azure Monitor.
                                           Defaults to LogType.LOCAL.
 
         """
         super().__init__(name=name)
 
-        if log_type == LogType.GOOGLE_CLOUD:
-            import google.cloud.logging
-            from google.cloud.logging_v2.handlers import StructuredLogHandler
+        if log_type == LogType.AZURE_MONITOR:
+            from azure.monitor.opentelemetry import configure_azure_monitor
 
-            from tools.logger import GoogleCloudFormatter
+            from tools.logger import AzureMonitorFormatter
 
-            client = google.cloud.logging.Client(
-                project=project, credentials=credentials
+            # Configure Azure Monitor with OpenTelemetry
+            configure_azure_monitor(
+                connection_string=connection_string,
+                credential=credential,
             )
-            client.setup_logging()
 
-            formatter = GoogleCloudFormatter()
-            handler = StructuredLogHandler(stream=sys.stdout)
+            formatter = AzureMonitorFormatter()
+            handler = logging.StreamHandler(stream=sys.stdout)
 
             handler.setFormatter(formatter)
             self.addHandler(handler)

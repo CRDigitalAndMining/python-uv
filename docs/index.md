@@ -39,7 +39,7 @@ This repository provides a complete, batteries-included development environment 
 **📦 Production Ready**
 
 - Reusable utility modules for common tasks
-- Structured logging with local and Google Cloud support
+- Structured logging with local and Azure Monitor support
 - Environment-based configuration management
 - Performance monitoring with Timer decorator
 
