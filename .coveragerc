@@ -1,4 +1,7 @@
 [run]
+# Omit __init__.py files from coverage (they only contain imports and exports)
+# Omit noxfile.py (task automation, not application code)
+# Omit tests directory (test code itself doesn't need coverage)
 omit =
     **/__init__.py
     noxfile.py

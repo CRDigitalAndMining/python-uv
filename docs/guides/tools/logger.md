@@ -182,12 +182,12 @@ The `LocalFormatter` provides colored, human-readable output for local developme
 - Module and line number information
 - Clean formatting for console output
 
-### GoogleCloudFormatter
+### AzureMonitorFormatter
 
-The `GoogleCloudFormatter` produces structured JSON logs compatible with Google Cloud Logging:
+The `AzureMonitorFormatter` produces structured JSON logs compatible with Azure Monitor and Application Insights:
 
 - Structured JSON format
-- Severity levels mapped to Google Cloud standards
+- Severity levels mapped to Azure Monitor standards
 - Automatic metadata inclusion
 - Stack trace formatting for errors
 
@@ -252,7 +252,7 @@ except Exception:
 The Logger module uses the following configuration:
 
 - **LogType.LOCAL**: Colored console output via `LocalFormatter`
-- **LogType.GOOGLE_CLOUD**: Structured JSON via `GoogleCloudFormatter`
+- **LogType.AZURE_MONITOR**: Structured JSON via `AzureMonitorFormatter`
 
 ### Customizing Formatters
 
@@ -281,10 +281,6 @@ def test_logger(caplog):
         logger.info("Test message")
 
     assert "Test message" in caplog.text
-    with self.assertLogs(logger, level=logging.INFO) as cm:
-        logger.info("Test message")
-
-    assert "Test message" in cm.output[0]
 ```
 
 ## Related Documentation

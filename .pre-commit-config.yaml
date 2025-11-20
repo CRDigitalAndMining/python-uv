@@ -33,7 +33,7 @@ repos:
         description: "Remove trailing whitespace from files"
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.8
+    rev: v0.14.0
     hooks:
       - id: ruff
         name: Ruff check

@@ -45,9 +45,14 @@ class Timer(ContextDecorator):
         """Run when exit ContextManager or Decoraotr."""
         self.end = time.time()
 
-        from tools import Logger
+        from tools.config import Settings
+        from tools.logger import Logger, LogType
 
-        logger = Logger(self.name)
+        settings = Settings()
+        logger = Logger(
+            self.name,
+            log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR,
+        )
         logger.debug("executed in %f ms", self._duration * 1_000)
 
     @property

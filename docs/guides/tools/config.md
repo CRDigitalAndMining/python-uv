@@ -188,7 +188,7 @@ settings = Settings()
 # Select log type based on environment
 logger = Logger(
     __name__,
-    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR
 )
 
 # Configure database
@@ -233,7 +233,7 @@ class AppSettings(BaseSettings):
 settings = AppSettings()
 logger = Logger(
     __name__,
-    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR
 )
 
 # Database

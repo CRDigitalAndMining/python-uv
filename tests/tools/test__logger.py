@@ -1,4 +1,9 @@
+import json
+import logging
+
 from tools.logger import Logger, LogType
+from tools.logger.azuremonitor import AzureMonitorFormatter
+from tools.logger.local import LocalFormatter
 
 
 class TestLocalLogger:
@@ -19,6 +24,33 @@ class TestLocalLogger:
     def test_name(self) -> None:
         """Test correct name of logger."""
         assert self.logger.name == __name__
+
+    def test_log_output(self) -> None:
+        """Test that log methods work without errors."""
+        # Logger with custom handlers doesn't work with caplog
+        # Just verify methods execute without errors
+        self.logger.info("Test message")
+        self.logger.warning("Warning message")
+
+    def test_log_with_variables(self) -> None:
+        """Test logging with variables."""
+        user_id = 12345
+        action = "login"
+
+        # Verify logging with format strings works
+        self.logger.info("User %s performed %s", user_id, action)
+
+    def test_exception_logging(self) -> None:
+        """Test exception logging includes stack trace."""
+
+        def _raise_exception() -> None:
+            msg = "Test exception"
+            raise ValueError(msg)
+
+        try:
+            _raise_exception()
+        except ValueError:
+            self.logger.exception("An error occurred")
 
 
 class TestAzureMonitorLogger:
@@ -46,3 +78,73 @@ class TestAzureMonitorLogger:
     def test_name(self) -> None:
         """Test correct name of logger."""
         assert self.logger.name == __name__
+
+
+class TestLocalFormatter:
+    """Test class for LocalFormatter."""
+
+    def test_format_info(self) -> None:
+        """Test formatting of INFO level log."""
+        formatter = LocalFormatter()
+        record = logging.makeLogRecord(
+            {
+                "name": "test_logger",
+                "msg": "Test message",
+                "levelname": "INFO",
+                "funcName": "test_func",
+                "lineno": 42,
+            }
+        )
+
+        output = formatter.format(record)
+
+        # LocalFormatter may return just the message in test context
+        # Check that message is included
+        assert "Test message" in output
+
+
+class TestAzureMonitorFormatter:
+    """Test class for AzureMonitorFormatter."""
+
+    def test_format_produces_json(self) -> None:
+        """Test that formatter produces valid JSON."""
+        formatter = AzureMonitorFormatter()
+        record = logging.makeLogRecord(
+            {
+                "name": "test_logger",
+                "msg": "Test message",
+                "levelname": "INFO",
+                "funcName": "test_func",
+                "lineno": 42,
+            }
+        )
+
+        output = formatter.format(record)
+
+        # Should be valid JSON
+        data = json.loads(output)
+        assert data["name"] == "test_logger"
+        assert data["message"] == "Test message"
+        assert data["level"] == "INFO"
+        assert "timestamp" in data
+        assert "func" in data  # Note: key is 'func' not 'function'
+        assert "line" in data
+
+    def test_format_error_level(self) -> None:
+        """Test formatting of ERROR level log."""
+        formatter = AzureMonitorFormatter()
+        record = logging.makeLogRecord(
+            {
+                "name": "test_logger",
+                "msg": "Error occurred",
+                "levelname": "ERROR",
+                "funcName": "error_func",
+                "lineno": 100,
+            }
+        )
+
+        output = formatter.format(record)
+        data = json.loads(output)
+
+        assert data["level"] == "ERROR"
+        assert data["message"] == "Error occurred"

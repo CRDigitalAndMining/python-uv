@@ -42,6 +42,13 @@ class Logger(logging.Logger):
         super().__init__(name=name)
 
         if log_type == LogType.AZURE_MONITOR:
+            if not connection_string and not credential:
+                msg = (
+                    "Azure Monitor logging requires either "
+                    "connection_string or credential"
+                )
+                raise ValueError(msg)
+
             from azure.monitor.opentelemetry import configure_azure_monitor
 
             from tools.logger import AzureMonitorFormatter

@@ -103,7 +103,7 @@ tools/
 │   ├── logger.py        # Main Logger class
 │   ├── type.py          # LogType enum
 │   ├── local.py         # LocalFormatter
-│   ├── googlecloud.py   # GoogleCloudFormatter
+│   ├── azuremonitor.py  # AzureMonitorFormatter
 │   ├── color.py         # Color constants
 │   └── style.py         # Log styling
 └── tracer/
@@ -137,7 +137,7 @@ from tools.logger import Logger, LogType
 settings = Settings()
 logger = Logger(
     __name__,
-    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+    log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.AZURE_MONITOR
 )
 
 app = FastAPI(**settings.fastapi_kwargs)
@@ -181,7 +181,7 @@ class Application:
         self.settings = Settings()
         self.logger = Logger(
             __name__,
-            log_type=LogType.LOCAL if self.settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+            log_type=LogType.LOCAL if self.settings.IS_LOCAL else LogType.AZURE_MONITOR
         )
 
     def run(self):
