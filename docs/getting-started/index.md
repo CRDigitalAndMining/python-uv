@@ -50,7 +50,7 @@ If you prefer to use Docker without VSCode integration, you can use the standalo
 
 ```bash
 # Clone the repository
-git clone https://github.com/a5chin/python-uv.git
+git clone https://github.com/CRDigitalAndMining/python-uv.git
 cd python-uv
 
 # Build the Docker image
@@ -85,7 +85,7 @@ For advanced users who prefer to work directly on their host machine.
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone the repository
-git clone https://github.com/a5chin/python-uv.git
+git clone https://github.com/CRDigitalAndMining/python-uv.git
 cd python-uv
 
 # Install dependencies

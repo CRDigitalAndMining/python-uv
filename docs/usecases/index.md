@@ -337,4 +337,4 @@ def test_process_data():
 
 - Check the `tests/` directory for test examples
 - Review the `tools/` source code for implementation patterns
-- Browse the [GitHub repository](https://github.com/a5chin/python-uv) for additional examples
+- Browse the [GitHub repository](https://github.com/CRDigitalAndMining/python-uv) for additional examples

@@ -141,7 +141,7 @@ uv add requests pandas
 
 ## Resources
 
-- [GitHub Repository](https://github.com/a5chin/python-uv)
+- [GitHub Repository](https://github.com/CRDigitalAndMining/python-uv)
 - [uv Documentation](https://docs.astral.sh/uv)
 - [Ruff Documentation](https://docs.astral.sh/ruff)
 - [Pyright Documentation](https://github.com/microsoft/pyright)

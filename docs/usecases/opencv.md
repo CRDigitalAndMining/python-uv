@@ -8,7 +8,7 @@ FROM ghcr.io/astral-sh/uv:$UV_VERSION AS uv
 
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:$DEBIAN_VERSION
-LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
+LABEL maintainer="CRDigitalAndMining <contact@crdigital.com>"
 
 # hadolint ignore=DL3008
 RUN apt-get update \

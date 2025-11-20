@@ -5,7 +5,7 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-[![Versions](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12%20|%203.13%20|%203.14%20-green.svg)](https://github.com/a5chin/python-uv)
+[![Versions](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12%20|%203.13%20|%203.14%20-green.svg)](https://github.com/CRDigitalAndMining/python-uv)
 
 </div>
 
@@ -69,7 +69,7 @@ A production-ready Python development environment template using modern tools: *
 
 2. **Open in container**:
    ```bash
-   git clone https://github.com/a5chin/python-uv.git
+   git clone https://github.com/CRDigitalAndMining/python-uv.git
    cd python-uv
    code .
    ```
@@ -107,7 +107,7 @@ docker run -it --rm -v $(pwd):/workspace python-uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and setup
-git clone https://github.com/a5chin/python-uv.git
+git clone https://github.com/CRDigitalAndMining/python-uv.git
 cd python-uv
 
 # Install dependencies
@@ -373,7 +373,7 @@ The Dev Container includes pre-configured extensions and settings for optimal Py
 
 ## 📖 Documentation
 
-Comprehensive documentation is available at **[https://a5chin.github.io/python-uv](https://a5chin.github.io/python-uv)**
+Comprehensive documentation is available at **[https://CRDigitalAndMining.github.io/python-uv](https://CRDigitalAndMining.github.io/python-uv)**
 
 **Topics covered:**
 - 🚀 **Getting Started** - Docker, VSCode, Dev Containers setup
@@ -386,9 +386,9 @@ Comprehensive documentation is available at **[https://a5chin.github.io/python-u
 
 This repository maintains multiple branches for different use cases:
 
-- **[main](https://github.com/a5chin/python-uv/tree/main)** - Current production-ready template (recommended)
-- **[jupyter](https://github.com/a5chin/python-uv/tree/jupyter)** - Archived: Jupyter-specific configuration
-- **[rye](https://github.com/a5chin/python-uv/tree/rye)** - Archived: Rye package manager version (replaced by uv)
+- **[main](https://github.com/CRDigitalAndMining/python-uv/tree/main)** - Current production-ready template (recommended)
+- **[jupyter](https://github.com/CRDigitalAndMining/python-uv/tree/jupyter)** - Archived: Jupyter-specific configuration
+- **[rye](https://github.com/CRDigitalAndMining/python-uv/tree/rye)** - Archived: Rye package manager version (replaced by uv)
 
 ## 📄 License
 
