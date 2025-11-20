@@ -1,15 +1,11 @@
 {
-    "pythonVersion": "3.14",
-    "pythonPlatform": "All",
-    "venv": ".venv",
-    "typeCheckingMode": "standard",
     "include": [
         "tools"
     ],
     "exclude": [
-        "**/__pycache__",
-        ".pytest_cache",
-        ".ruff_cache",
-        ".venv"
-    ]
+        "tests"
+    ],
+    "typeCheckingMode": "standard",
+    "venvPath": "/home/vscode",
+    "venv": ".venv"
 }

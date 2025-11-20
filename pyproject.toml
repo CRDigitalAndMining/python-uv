@@ -1,35 +1,10 @@
 [project]
 name = "python-uv-template"
 version = "0.1.0"
-description = "Production-ready Python development template with uv, Ruff, and reusable utilities (Logger, Config, Timer) for building modern applications."
-keywords = [
-    "template",
-    "boilerplate",
-    "uv",
-    "ruff",
-    "devcontainer",
-    "azure-monitor",
-    "logging",
-    "configuration",
-]
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-    "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Software Development :: Quality Assurance",
-    "Typing :: Typed",
-]
+description = "Lightweight Python development template with uv and Ruff for quick POCs and prototypes."
+keywords = ["template", "uv", "ruff", "poc", "prototype"]
 
 authors = [{ name = "CRDigitalAndMining", email = "contact@crdigital.com" }]
-maintainers = [{ name = "CRDigitalAndMining", email = "contact@crdigital.com" }]
-
 requires-python = ">=3.10"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -55,14 +30,8 @@ all = [
 
 [dependency-groups]
 dev = [
-    "ipykernel>=7.1.0",
-    "jupyter>=1.1.1",
-    "mkdocs-material>=9.6.21",
-    "nox>=2025.5.1",
-    "pre-commit>=4.3.0",
     "pyright>=1.1.406",
     "pytest>=8.4.2",
-    "pytest-cov>=7.0.0",
     "ruff>=0.14.0",
 ]
 
