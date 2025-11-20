@@ -101,7 +101,8 @@ See practical examples:
 ├── tests/                   # Test suite
 ├── docs/                    # This documentation
 ├── .devcontainer/           # Dev Container configuration
-├── .github/                 # GitHub Actions workflows
+├── .github/                 # GitHub configuration (Copilot instructions)
+├── azure-pipelines/         # Azure DevOps Pipeline configurations
 ├── noxfile.py              # Task automation
 ├── pyproject.toml          # Project metadata
 ├── ruff.toml               # Ruff configuration

@@ -100,8 +100,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 echo "##vso[task.prependpath]$HOME/.cargo/bin"
 ```
 
-This is equivalent to the custom GitHub Action `.github/actions/setup-python-with-uv`.
-
 ## Running Locally
 
 You can test nox commands locally before running in pipelines:

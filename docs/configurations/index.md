@@ -239,15 +239,16 @@ else:
 
 ### CI/CD Configuration
 
-GitHub Actions workflows use the same configurations:
+Azure DevOps Pipelines use the same configurations:
 
 ```yaml
-# .github/workflows/test.yml
-- name: Run tests
-  run: uv run nox -s test
+# azure-pipelines/test.yml
+- script: |
+    uv run nox -s test
+  displayName: 'Run tests'
 ```
 
-Ensure CI and local environments use identical configurations.
+Ensure CI and local environments use identical configurations. See `azure-pipelines/README.md` for setup details.
 
 ## Migration Guide
 

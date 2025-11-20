@@ -35,17 +35,6 @@
         "editor.defaultFormatter": "ms-azuretools.vscode-docker",
         "editor.formatOnSave": true
     },
-    "[github-actions-workflow]": {
-        "editor.autoIndent": "advanced",
-        "editor.defaultFormatter": "redhat.vscode-yaml",
-        "editor.insertSpaces": true,
-        "editor.quickSuggestions": {
-            "other": true,
-            "comments": false,
-            "strings": true
-        },
-        "editor.tabSize": 2
-    },
     "[json][jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features",
         "editor.formatOnSave": true,
