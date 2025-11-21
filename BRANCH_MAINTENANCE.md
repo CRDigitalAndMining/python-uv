@@ -46,7 +46,7 @@ Lightweight version optimized for rapid prototyping:
    # ... make fixes to tools/logger/logger.py ...
    git add tools/
    git commit -m "fix: Correct Azure Monitor connection handling"
-   
+
    # Cherry-pick to minimal
    git checkout minimal
    git cherry-pick <commit-hash>
@@ -58,7 +58,7 @@ Lightweight version optimized for rapid prototyping:
    git checkout main
    # ... add new Timer feature ...
    git commit -m "feat: Add async support to Timer"
-   
+
    # Cherry-pick to minimal
    git checkout minimal
    git cherry-pick <commit-hash>
@@ -71,7 +71,7 @@ Lightweight version optimized for rapid prototyping:
    uv add pydantic@latest
    git add pyproject.toml uv.lock
    git commit -m "chore: Update pydantic to latest"
-   
+
    # Cherry-pick to minimal
    git checkout minimal
    git cherry-pick <commit-hash>
@@ -83,7 +83,7 @@ Lightweight version optimized for rapid prototyping:
    git checkout main
    # ... fix ruff.toml issue ...
    git commit -m "fix: Correct Ruff ignore pattern"
-   
+
    # Cherry-pick to minimal
    git checkout minimal
    git cherry-pick <commit-hash>
