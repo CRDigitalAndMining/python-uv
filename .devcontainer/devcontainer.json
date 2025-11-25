@@ -6,24 +6,40 @@
         "vscode"
     ],
     "workspaceFolder": "/workspace",
+    "mounts": [
+        "source=vscode-copilot,target=/home/vscode/.github-copilot,type=volume"
+    ],
     "customizations": {
         "vscode": {
             "extensions": [
+                // Python Development
                 "charliermarsh.ruff",
-                "codezombiech.gitignore",
-                "eamodio.gitlens",
-                "GitHub.copilot",
-                "GitHub.copilot-chat",
-                "kevinrose.vsc-python-indent",
                 "ms-python.python",
                 "ms-python.vscode-pylance",
+                "ms-python.debugpy",
+                "kevinrose.vsc-python-indent",
                 "njpwerner.autodocstring",
-                "oderwat.indent-rainbow",
-                "pkief.material-icon-theme",
-                "shardulm94.trailing-spaces",
-                "streetsidesoftware.code-spell-checker",
+                // Azure & AI
+                "ms-azuretools.vscode-azureresourcegroups",
+                // REST & API Testing
+                "humao.rest-client",
+                "rangav.vscode-thunder-client",
+                // Docker & Containers
+                "ms-azuretools.vscode-docker",
+                // Git & Collaboration
+                "eamodio.gitlens",
+                "codezombiech.gitignore",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                // Code Quality & Formatting
+                "usernamehw.errorlens",
                 "tamasfe.even-better-toml",
-                "usernamehw.errorlens"
+                "streetsidesoftware.code-spell-checker",
+                "shardulm94.trailing-spaces",
+                // UI & Productivity
+                "pkief.material-icon-theme",
+                "oderwat.indent-rainbow",
+                "aaron-bond.better-comments"
             ]
         }
     },
@@ -33,7 +49,8 @@
         "PYTHONPATH": "/workspace",
         "IS_LOCAL": "true"
     },
-    "postCreateCommand": "uv sync --frozen",
+    "postCreateCommand": "uv sync --prerelease=allow && echo 'source /etc/bash_completion.d/azure-cli' >> ~/.bashrc",
+    "postStartCommand": "uv run pre-commit install",
     "postAttachCommand": "git config core.fileMode false",
     "remoteUser": "vscode"
 }
